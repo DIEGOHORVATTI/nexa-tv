@@ -1,0 +1,60 @@
+name: Build Android APK
+
+on:
+  workflow_dispatch:
+  push:
+    tags: ['v*']
+
+permissions:
+  contents: write
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: oven-sh/setup-bun@v2
+        with:
+          bun-version: latest
+
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '17'
+
+      - uses: android-actions/setup-android@v3
+
+      - name: Instala dependências
+        run: bun install
+
+      - name: Gera projeto nativo Android
+        run: bunx expo prebuild --platform android --no-install
+
+      - name: Build APK (release, assinado com debug key = instalável)
+        run: |
+          cd android
+          chmod +x gradlew
+          ./gradlew assembleRelease --no-daemon
+
+      - name: Prepara artefato
+        run: |
+          mkdir -p out
+          cp android/app/build/outputs/apk/release/app-release.apk out/nexa-tv.apk
+          ls -la out
+
+      - name: Upload como artifact (download pela aba Actions)
+        uses: actions/upload-artifact@v4
+        with:
+          name: nexa-tv-apk
+          path: out/nexa-tv.apk
+
+      - name: Cria Release com o APK
+        uses: softprops/action-gh-release@v2
+        with:
+          tag_name: build-${{ github.run_number }}
+          name: Nexa TV — APK build ${{ github.run_number }}
+          files: out/nexa-tv.apk
+          body: |
+            APK do app Nexa TV (release assinado com debug key — instalável).
+            Baixe `nexa-tv.apk` abaixo e instale no Android (permitir "fontes desconhecidas").
