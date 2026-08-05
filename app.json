@@ -23,6 +23,12 @@
     },
     "web": {
       "favicon": "./assets/favicon.png"
-    }
+    },
+    "extra": {
+      "eas": {
+        "projectId": "df3bb5ed-5384-4712-9813-5237e4472945"
+      }
+    },
+    "owner": "diego_horvatti"
   }
 }
