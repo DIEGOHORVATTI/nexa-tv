@@ -43,3 +43,7 @@ yarn-error.*
 # claude session
 .claude/
 .omo/
+
+# docs sensíveis (só local)
+API_REAL.md
+BLUEPRINT.md
