@@ -1,15 +1,18 @@
 {
   "expo": {
-    "name": "nexa-expo",
-    "slug": "nexa-expo",
+    "name": "Nexa TV",
+    "slug": "nexa-tv",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
     "userInterfaceStyle": "light",
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": true,
+      "bundleIdentifier": "com.nexa.recargafacil"
     },
     "android": {
+      "package": "com.nexa.recargafacil",
+      "versionCode": 1,
       "adaptiveIcon": {
         "backgroundColor": "#E6F4FE",
         "foregroundImage": "./assets/android-icon-foreground.png",
