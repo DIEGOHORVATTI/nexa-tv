@@ -31,16 +31,16 @@ jobs:
       - name: Gera projeto nativo Android
         run: bunx expo prebuild --platform android --no-install
 
-      - name: Build APK (release, assinado com debug key = instalável)
+      - name: Build APK (debug — assinado com debug key, instalável)
         run: |
           cd android
           chmod +x gradlew
-          ./gradlew assembleRelease --no-daemon
+          ./gradlew assembleDebug --no-daemon --stacktrace
 
       - name: Prepara artefato
         run: |
           mkdir -p out
-          cp android/app/build/outputs/apk/release/app-release.apk out/nexa-tv.apk
+          cp android/app/build/outputs/apk/debug/app-debug.apk out/nexa-tv.apk
           ls -la out
 
       - name: Upload como artifact (download pela aba Actions)
