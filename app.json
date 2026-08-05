@@ -6,6 +6,11 @@
     "orientation": "portrait",
     "icon": "./assets/icon.png",
     "userInterfaceStyle": "light",
+    "splash": {
+      "image": "./assets/splash-icon.png",
+      "resizeMode": "contain",
+      "backgroundColor": "#E9382C"
+    },
     "ios": {
       "supportsTablet": true,
       "bundleIdentifier": "com.nexa.recargafacil"
@@ -14,10 +19,8 @@
       "package": "com.nexa.recargafacil",
       "versionCode": 1,
       "adaptiveIcon": {
-        "backgroundColor": "#E6F4FE",
-        "foregroundImage": "./assets/android-icon-foreground.png",
-        "backgroundImage": "./assets/android-icon-background.png",
-        "monochromeImage": "./assets/android-icon-monochrome.png"
+        "foregroundImage": "./assets/adaptive-foreground.png",
+        "backgroundColor": "#E9382C"
       },
       "predictiveBackGestureEnabled": false
     },
